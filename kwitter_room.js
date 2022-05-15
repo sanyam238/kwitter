@@ -12,7 +12,7 @@ const firebaseConfig = {
      firebase.initializeApp(firebaseConfig);
 //ADD YOUR FIREBASE LINKS HERE
 user_name = localStorage.getItem("user_name");
-document.getElementById("user_name").innerHTML = "Welcome " + user_name + "!";
+document.getElementById("user_name").innerHTML = "Welcome " + user_name+"!";
 
 function add_room()
 {
@@ -21,7 +21,7 @@ firebase.database().ref("/").child(room_name).update({
       purpose : "to add the room name"
 });
 localStorage.setItem("room_name",room_name);
-window.location = "kwitter_chat_page.html";
+window.location = "kwitter_message_page.html";
 }
 
 function getData() {
@@ -32,7 +32,7 @@ function getData() {
        Room_names = childKey;
       //Start code
 console.log("room names -"+Room_names);
-row = "<div class ='room_name' id="+Room_names+ "onclick ='RedirectToRoomName(this.id)'>#"+Room_names+"</div> <hr>";
+row = "<div class ='room_name' id="+Room_names+ " onclick ='RedirectToRoomName(this.id)'>#"+Room_names+"</div> <hr>";
 document.getElementById("output").innerHTML += row;
       //End code
       });
@@ -43,6 +43,13 @@ getData();
 function RedirectToRoomName(Room_names) {
 console.log(Room_names);
 localStorage.setItem("Room_names",Room_names);
-window.location = "kwitter_chat_page.html";
+window.location = "kwitter_message_page.html";
 
+}
+
+function logout(){
+
+      localStorage.removeItem("user_name");
+      localStorage.removeItem("room_name");
+      window.location = "index.html";
 }
